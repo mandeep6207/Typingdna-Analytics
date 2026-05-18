@@ -133,6 +133,7 @@ This will generate the dataset, clean the data, train and compare models, save t
 - `reports/model_comparison.csv`
 - `reports/feature_summary.csv`
 - `reports/executive_summary.md`
+- `reports/run_metadata.json`
 - `reports/project_report.md`
 - `metrics/classification_report.txt`
 
