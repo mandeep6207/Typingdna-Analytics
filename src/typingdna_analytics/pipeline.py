@@ -315,6 +315,10 @@ This project generated {len(df):,} synthetic typing sessions and trained three s
 
 {class_counts.to_string()}
 
+## Target Distribution (%)
+
+{pd.Series(metrics['class_distribution_pct']).to_string()}
+
 ## Best Model
 
 - Model: {best_model_name}

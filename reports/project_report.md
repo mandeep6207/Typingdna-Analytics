@@ -12,6 +12,13 @@ Balanced Typist        1657
 Careful Typist          869
 Inconsistent Typist    1138
 
+## Target Distribution (%)
+
+Fast Typist            26.72
+Balanced Typist        33.14
+Careful Typist         17.38
+Inconsistent Typist    22.76
+
 ## Best Model
 
 - Model: Random Forest
