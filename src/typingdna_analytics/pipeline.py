@@ -289,6 +289,12 @@ def write_reports(metrics: dict, best_report: str) -> None:
         file.write(best_report)
 
 
+def verify_artifacts(paths: Iterable[Path]) -> None:
+    missing = [str(path) for path in paths if not path.exists()]
+    if missing:
+        raise FileNotFoundError(f"Missing expected artifacts: {', '.join(missing)}")
+
+
 def build_project_report(df: pd.DataFrame, best_model_name: str, metrics: dict) -> str:
     class_counts = df[TARGET_COLUMN].value_counts().reindex(CLASS_ORDER)
     summary = df[FEATURE_COLUMNS].describe().round(2)
@@ -404,6 +410,22 @@ def run_pipeline(random_state: int = 42) -> dict:
     project_report = build_project_report(cleaned, best_name, metrics)
     with open(REPORTS_DIR / "project_report.md", "w", encoding="utf-8") as file:
         file.write(project_report)
+
+    verify_artifacts(
+        [
+            DATA_DIR / "typing_behavior.csv",
+            DATA_DIR / "cleaned_typing_behavior.csv",
+            MODELS_DIR / "typing_style_classifier.pkl",
+            MODELS_DIR / "label_encoder.pkl",
+            VISUALS_DIR / "style_distribution.png",
+            VISUALS_DIR / "correlation_heatmap.png",
+            VISUALS_DIR / "feature_importance.png",
+            VISUALS_DIR / "confusion_matrix.png",
+            REPORTS_DIR / "model_metrics.json",
+            REPORTS_DIR / "project_report.md",
+            METRICS_DIR / "classification_report.txt",
+        ]
+    )
 
     return {
         "raw_path": str(DATA_DIR / "typing_behavior.csv"),
