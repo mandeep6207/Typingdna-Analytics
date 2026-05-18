@@ -18,6 +18,14 @@ Inconsistent Typist    1138
 - Weighted F1: 0.9830
 - Accuracy: 0.9830
 
+## Model Comparison
+
+| Model | Weighted F1 | Accuracy |
+| --- | ---: | ---: |
+| Logistic Regression | 0.9640 | 0.9640 |
+| Random Forest | 0.9830 | 0.9830 |
+| Gradient Boosting | 0.9790 | 0.9790 |
+
 ## Dataset Summary
 
            wpm  accuracy  error_rate  backspace_count  pause_time_ms  session_duration_min  words_typed
@@ -36,6 +44,17 @@ max     120.00    100.00       30.00            79.00        1500.00            
 - Careful typists show the highest accuracy and the longest pause times.
 - Inconsistent typists are separated by wider spreads in error rate, backspace usage, and session rhythm.
 - Tree-based models are expected to outperform the linear baseline because the classes are rule-driven and non-linear.
+
+## Limitations
+
+- The labels are synthetic, so the project is ideal for demonstrating machine learning workflow rather than proving real-user biometric behavior.
+- The target classes are intentionally structured, which makes the prediction task easier than a noisy production setting.
+
+## Next Steps
+
+- Extend the generator with more session-level telemetry such as key-hold timing and dwell time.
+- Add cross-validation and calibration curves for a more complete evaluation view.
+- Package the pipeline into a command-line interface for repeated runs with different random seeds.
 
 ## Recommended Use
 

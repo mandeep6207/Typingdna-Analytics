@@ -292,6 +292,10 @@ def write_reports(metrics: dict, best_report: str) -> None:
 def build_project_report(df: pd.DataFrame, best_model_name: str, metrics: dict) -> str:
     class_counts = df[TARGET_COLUMN].value_counts().reindex(CLASS_ORDER)
     summary = df[FEATURE_COLUMNS].describe().round(2)
+    model_rows = "\n".join(
+        f"| {name} | {score['weighted_f1']:.4f} | {score['accuracy']:.4f} |"
+        for name, score in metrics["model_scores"].items()
+    )
     return f"""# TypingDNA Analytics Project Report
 
 ## Overview
@@ -308,6 +312,12 @@ This project generated {len(df):,} synthetic typing sessions and trained three s
 - Weighted F1: {metrics['best_weighted_f1']:.4f}
 - Accuracy: {metrics['best_accuracy']:.4f}
 
+## Model Comparison
+
+| Model | Weighted F1 | Accuracy |
+| --- | ---: | ---: |
+{model_rows}
+
 ## Dataset Summary
 
 {summary.to_string()}
@@ -318,6 +328,17 @@ This project generated {len(df):,} synthetic typing sessions and trained three s
 - Careful typists show the highest accuracy and the longest pause times.
 - Inconsistent typists are separated by wider spreads in error rate, backspace usage, and session rhythm.
 - Tree-based models are expected to outperform the linear baseline because the classes are rule-driven and non-linear.
+
+## Limitations
+
+- The labels are synthetic, so the project is ideal for demonstrating machine learning workflow rather than proving real-user biometric behavior.
+- The target classes are intentionally structured, which makes the prediction task easier than a noisy production setting.
+
+## Next Steps
+
+- Extend the generator with more session-level telemetry such as key-hold timing and dwell time.
+- Add cross-validation and calibration curves for a more complete evaluation view.
+- Package the pipeline into a command-line interface for repeated runs with different random seeds.
 
 ## Recommended Use
 
