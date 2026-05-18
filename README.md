@@ -17,6 +17,15 @@ The project classifies sessions into four behavioral styles:
 - Best model automatically selected and saved with the label encoder
 - Publication-ready plots, metrics, and a written project report
 
+## Workflow
+
+1. Generate a synthetic dataset with realistic typing ranges.
+2. Clean and validate the session-level records.
+3. Explore the behavioral patterns and class balance.
+4. Train Logistic Regression, Random Forest, and Gradient Boosting models.
+5. Select the best model by weighted F1-score.
+6. Save artifacts, reports, and visualizations for reuse.
+
 ## Tech Stack
 
 - Python
@@ -79,6 +88,12 @@ The current benchmark from the generated dataset is:
 - Weighted F1-score: 0.9830
 - Accuracy: 0.9830
 
+| Model | Weighted F1 | Accuracy |
+| --- | ---: | ---: |
+| Logistic Regression | 0.9640 | 0.9640 |
+| Random Forest | 0.9830 | 0.9830 |
+| Gradient Boosting | 0.9790 | 0.9790 |
+
 ## Quick Start
 
 1. Create or activate a Python environment.
@@ -111,3 +126,5 @@ This will generate the dataset, clean the data, train and compare models, save t
 ## Notes
 
 The pipeline is fully reproducible from the repository root. The root entrypoint adds `src/` to the import path so the project can be run directly without installing the package first.
+
+If you want to inspect the analysis in notebook form, open `notebooks/typingdna_analysis.ipynb` after running the pipeline once.
