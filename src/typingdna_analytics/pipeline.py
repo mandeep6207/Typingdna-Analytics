@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 from dataclasses import dataclass
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Dict, Iterable, Tuple
 
@@ -290,6 +291,14 @@ def write_reports(metrics: dict, best_report: str) -> None:
     model_comparison.to_csv(REPORTS_DIR / "model_comparison.csv", index=False)
     feature_summary = pd.DataFrame.from_dict(metrics["feature_summary"], orient="index")
     feature_summary.to_csv(REPORTS_DIR / "feature_summary.csv")
+    run_metadata = {
+        "generated_at_utc": datetime.now(timezone.utc).isoformat(),
+        "best_model": metrics["best_model"],
+        "random_state": 42,
+        "artifact_group": "TypingDNA Analytics",
+    }
+    with open(REPORTS_DIR / "run_metadata.json", "w", encoding="utf-8") as file:
+        json.dump(run_metadata, file, indent=2)
     with open(METRICS_DIR / "classification_report.txt", "w", encoding="utf-8") as file:
         file.write(best_report)
 
@@ -452,6 +461,7 @@ def run_pipeline(random_state: int = 42) -> dict:
             REPORTS_DIR / "model_metrics.json",
             REPORTS_DIR / "model_comparison.csv",
             REPORTS_DIR / "feature_summary.csv",
+            REPORTS_DIR / "run_metadata.json",
             REPORTS_DIR / "project_report.md",
             REPORTS_DIR / "executive_summary.md",
             METRICS_DIR / "classification_report.txt",
