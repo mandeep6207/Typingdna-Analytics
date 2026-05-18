@@ -288,6 +288,8 @@ def write_reports(metrics: dict, best_report: str) -> None:
     model_comparison = pd.DataFrame.from_dict(metrics["model_scores"], orient="index").reset_index()
     model_comparison = model_comparison.rename(columns={"index": "model"})
     model_comparison.to_csv(REPORTS_DIR / "model_comparison.csv", index=False)
+    feature_summary = pd.DataFrame.from_dict(metrics["feature_summary"], orient="index")
+    feature_summary.to_csv(REPORTS_DIR / "feature_summary.csv")
     with open(METRICS_DIR / "classification_report.txt", "w", encoding="utf-8") as file:
         file.write(best_report)
 
@@ -449,6 +451,7 @@ def run_pipeline(random_state: int = 42) -> dict:
             VISUALS_DIR / "confusion_matrix.png",
             REPORTS_DIR / "model_metrics.json",
             REPORTS_DIR / "model_comparison.csv",
+            REPORTS_DIR / "feature_summary.csv",
             REPORTS_DIR / "project_report.md",
             REPORTS_DIR / "executive_summary.md",
             METRICS_DIR / "classification_report.txt",
