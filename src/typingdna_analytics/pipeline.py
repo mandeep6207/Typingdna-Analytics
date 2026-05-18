@@ -363,6 +363,17 @@ Use the saved best model for batch scoring or portfolio demonstrations. The arti
 """
 
 
+def build_executive_summary(metrics: dict) -> str:
+    return f"""# TypingDNA Analytics Executive Summary
+
+- Best model: {metrics['best_model']}
+- Weighted F1-score: {metrics['best_weighted_f1']:.4f}
+- Accuracy: {metrics['best_accuracy']:.4f}
+- Key takeaway: typing behavior can be separated reliably using speed, correction, and pause-pattern features.
+- Portfolio value: the project demonstrates synthetic data generation, EDA, model benchmarking, and artifact packaging end to end.
+"""
+
+
 def run_pipeline(random_state: int = 42) -> dict:
     ensure_directories()
     raw = generate_synthetic_dataset(n_sessions=5000, random_state=random_state)
@@ -423,6 +434,8 @@ def run_pipeline(random_state: int = 42) -> dict:
     project_report = build_project_report(cleaned, best_name, metrics)
     with open(REPORTS_DIR / "project_report.md", "w", encoding="utf-8") as file:
         file.write(project_report)
+    with open(REPORTS_DIR / "executive_summary.md", "w", encoding="utf-8") as file:
+        file.write(build_executive_summary(metrics))
 
     verify_artifacts(
         [
@@ -437,6 +450,7 @@ def run_pipeline(random_state: int = 42) -> dict:
             REPORTS_DIR / "model_metrics.json",
             REPORTS_DIR / "model_comparison.csv",
             REPORTS_DIR / "project_report.md",
+            REPORTS_DIR / "executive_summary.md",
             METRICS_DIR / "classification_report.txt",
         ]
     )
