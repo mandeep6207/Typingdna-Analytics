@@ -401,6 +401,7 @@ def run_pipeline(random_state: int = 42) -> dict:
         "best_weighted_f1": best_result.weighted_f1,
         "best_accuracy": best_result.accuracy,
         "class_distribution": cleaned[TARGET_COLUMN].value_counts().reindex(CLASS_ORDER).to_dict(),
+        "class_distribution_pct": (cleaned[TARGET_COLUMN].value_counts(normalize=True).reindex(CLASS_ORDER) * 100).round(2).to_dict(),
         "feature_summary": cleaned[FEATURE_COLUMNS].describe().round(2).to_dict(),
         "model_scores": {
             name: {
