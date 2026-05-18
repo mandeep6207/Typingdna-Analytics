@@ -285,6 +285,9 @@ def plot_confusion_matrix(y_test: np.ndarray, predictions: np.ndarray, encoder: 
 def write_reports(metrics: dict, best_report: str) -> None:
     with open(REPORTS_DIR / "model_metrics.json", "w", encoding="utf-8") as file:
         json.dump(metrics, file, indent=2)
+    model_comparison = pd.DataFrame.from_dict(metrics["model_scores"], orient="index").reset_index()
+    model_comparison = model_comparison.rename(columns={"index": "model"})
+    model_comparison.to_csv(REPORTS_DIR / "model_comparison.csv", index=False)
     with open(METRICS_DIR / "classification_report.txt", "w", encoding="utf-8") as file:
         file.write(best_report)
 
@@ -423,6 +426,7 @@ def run_pipeline(random_state: int = 42) -> dict:
             VISUALS_DIR / "feature_importance.png",
             VISUALS_DIR / "confusion_matrix.png",
             REPORTS_DIR / "model_metrics.json",
+            REPORTS_DIR / "model_comparison.csv",
             REPORTS_DIR / "project_report.md",
             METRICS_DIR / "classification_report.txt",
         ]
