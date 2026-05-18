@@ -137,6 +137,13 @@ This will generate the dataset, clean the data, train and compare models, save t
 - `reports/project_report.md`
 - `metrics/classification_report.txt`
 
+## Suggested Reading Order
+
+1. Open `reports/executive_summary.md` for the one-paragraph takeaway.
+2. Review `reports/project_report.md` for the detailed analysis and model comparison.
+3. Inspect `visuals/style_distribution.png` and `visuals/correlation_heatmap.png` for the EDA view.
+4. Use `reports/model_comparison.csv` or `reports/model_metrics.json` for a machine-readable benchmark.
+
 ## Notes
 
 The pipeline is fully reproducible from the repository root. The root entrypoint adds `src/` to the import path so the project can be run directly without installing the package first.
