@@ -18,6 +18,10 @@ Inconsistent Typist    1138
 - Weighted F1: 0.9830
 - Accuracy: 0.9830
 
+## Model Selection Rationale
+
+The winning model balances precision and recall across all four classes while capturing the threshold-based structure baked into the synthetic labels. In this dataset, tree-based models have an advantage because the decision boundaries depend on combinations of speed, accuracy, corrections, and pause timing.
+
 ## Model Comparison
 
 | Model | Weighted F1 | Accuracy |

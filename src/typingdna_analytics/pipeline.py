@@ -321,6 +321,10 @@ This project generated {len(df):,} synthetic typing sessions and trained three s
 - Weighted F1: {metrics['best_weighted_f1']:.4f}
 - Accuracy: {metrics['best_accuracy']:.4f}
 
+## Model Selection Rationale
+
+The winning model balances precision and recall across all four classes while capturing the threshold-based structure baked into the synthetic labels. In this dataset, tree-based models have an advantage because the decision boundaries depend on combinations of speed, accuracy, corrections, and pause timing.
+
 ## Model Comparison
 
 | Model | Weighted F1 | Accuracy |
