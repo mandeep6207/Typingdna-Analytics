@@ -128,3 +128,12 @@ This will generate the dataset, clean the data, train and compare models, save t
 The pipeline is fully reproducible from the repository root. The root entrypoint adds `src/` to the import path so the project can be run directly without installing the package first.
 
 If you want to inspect the analysis in notebook form, open `notebooks/typingdna_analysis.ipynb` after running the pipeline once.
+
+## Troubleshooting
+
+- If the notebook shows stale outputs, rerun `python run_pipeline.py` before reopening it.
+- If you want to regenerate every artifact from scratch, delete the generated folders and rerun the pipeline:
+
+```bash
+python run_pipeline.py
+```
