@@ -80,6 +80,16 @@ The synthetic dataset contains the following features:
 
 The target label `typing_style` is assigned through realistic behavioral rules derived from the generated features.
 
+### Data Dictionary
+
+- `wpm`: average typing speed in words per minute
+- `accuracy`: percent of correctly typed characters
+- `error_rate`: estimated percentage of typing errors
+- `backspace_count`: number of correction keystrokes
+- `pause_time_ms`: average pause duration in milliseconds
+- `session_duration_min`: total session length in minutes
+- `words_typed`: number of typed words derived from session duration and speed
+
 ## Results
 
 The current benchmark from the generated dataset is:
