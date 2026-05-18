@@ -1,0 +1,35 @@
+{
+  "best_model": "Random Forest",
+  "best_weighted_f1": 0.9830045656468852,
+  "best_accuracy": 0.983,
+  "class_distribution": {
+    "Fast Typist": 1336,
+    "Balanced Typist": 1657,
+    "Careful Typist": 869,
+    "Inconsistent Typist": 1138
+  },
+  "model_scores": {
+    "Logistic Regression": {
+      "weighted_f1": 0.9640001863293928,
+      "accuracy": 0.964
+    },
+    "Random Forest": {
+      "weighted_f1": 0.9830045656468852,
+      "accuracy": 0.983
+    },
+    "Gradient Boosting": {
+      "weighted_f1": 0.9790108669395838,
+      "accuracy": 0.979
+    }
+  },
+  "feature_columns": [
+    "wpm",
+    "accuracy",
+    "error_rate",
+    "backspace_count",
+    "pause_time_ms",
+    "session_duration_min",
+    "words_typed"
+  ],
+  "n_sessions": 5000
+}

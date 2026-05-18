@@ -1,0 +1,10 @@
+                     precision    recall  f1-score   support
+
+    Balanced Typist       0.98      0.97      0.98       331
+     Careful Typist       0.98      0.99      0.99       174
+        Fast Typist       0.98      0.99      0.98       267
+Inconsistent Typist       1.00      0.98      0.99       228
+
+           accuracy                           0.98      1000
+          macro avg       0.98      0.98      0.98      1000
+       weighted avg       0.98      0.98      0.98      1000
