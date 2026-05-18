@@ -131,6 +131,8 @@ This will generate the dataset, clean the data, train and compare models, save t
 - `visuals/confusion_matrix.png`
 - `reports/model_metrics.json`
 - `reports/model_comparison.csv`
+- `reports/feature_summary.csv`
+- `reports/executive_summary.md`
 - `reports/project_report.md`
 - `metrics/classification_report.txt`
 
